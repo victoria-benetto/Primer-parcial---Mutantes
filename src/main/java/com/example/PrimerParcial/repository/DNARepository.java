@@ -3,7 +3,6 @@ package com.example.PrimerParcial.repository;
 import com.example.PrimerParcial.entities.DNA;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository

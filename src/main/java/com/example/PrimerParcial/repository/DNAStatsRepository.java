@@ -5,16 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DNAStatsRepository extends BaseRepository<DNAStats, Long> {
-    /*@Query(
-            value = "select count(*) from registro_dna where is_mutant = true",
-            nativeQuery = true
-    )
-    Integer searchMutants();
-    @Query(
-            value = "select count(*) from registro_dna where is_mutant = false",
-            nativeQuery = true
-    )
-    Integer searchNonMutants();
 
-     */
 }

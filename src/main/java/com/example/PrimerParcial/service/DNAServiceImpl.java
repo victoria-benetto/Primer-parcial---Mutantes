@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,20 +21,20 @@ public class DNAServiceImpl extends BaseServiceImpl<DNA, Long> implements DNASer
 
     @Override
     public boolean isMutant(DNA dna) {
-        // Convierte la secuencia almacenada en la base de datos a String[]
+        //Convierte la secuencia almacenada en la base de datos a String[]
         String dnaSequence = dna.getDna();
         String[] dnaArray = dnaSequence.split(",");
 
-        // Verifica si ya existe en la base de datos
+        //Verifica si ya existe en la base de datos
         Optional<DNA> existingDna = dnaRepository.findByDna(dnaSequence);
         if (existingDna.isPresent()) {
             return existingDna.get().isMutant();
         }
 
-        // Lógica para detección de mutante
+        //Lógica para detección de mutante
         boolean mutantDetected = detectMutant(dnaArray);
 
-        // Guarda en la base de datos
+        //Guarda en la base de datos
         dnaRepository.save(DNA.builder().dna(dnaSequence).isMutant(mutantDetected).build());
 
         return mutantDetected;
@@ -46,7 +45,7 @@ public class DNAServiceImpl extends BaseServiceImpl<DNA, Long> implements DNASer
         int mutantSequences = 0;
         char[][] matrix = convertToMatrix(dnaArray);
 
-        // Verificación de filas (horizontal)
+        //Verificación de filas (horizontal)
         for (int i = 0; i < n; i++) {
             if (hasConsecutiveSequence(matrix[i])) {
                 mutantSequences++;
@@ -54,7 +53,7 @@ public class DNAServiceImpl extends BaseServiceImpl<DNA, Long> implements DNASer
             }
         }
 
-        // Verificación de columnas (vertical)
+        //Verificación de columnas (vertical)
         for (int j = 0; j < n; j++) {
             if (hasConsecutiveSequence(getColumn(matrix, j))) {
                 mutantSequences++;
@@ -62,17 +61,17 @@ public class DNAServiceImpl extends BaseServiceImpl<DNA, Long> implements DNASer
             }
         }
 
-        // Verificación de diagonales
+        //Verificación de diagonales
         mutantSequences += checkDiagonals(matrix);
         return mutantSequences > 1;
     }
 
-    // Revisión de diagonales (ambos sentidos)
+    //Revisión de diagonales (ambos sentidos)
     private int checkDiagonals(char[][] matrix) {
         int n = matrix.length;
         int mutantSequences = 0;
 
-        // Verificación de diagonales (izquierda a derecha)
+        //Verificación de diagonales (izquierda a derecha)
         for (int i = 0; i < n - 3; i++) {
             if (hasConsecutiveSequence(getDiagonal(matrix, i, 0, true))) {
                 mutantSequences++;
@@ -82,7 +81,7 @@ public class DNAServiceImpl extends BaseServiceImpl<DNA, Long> implements DNASer
             }
         }
 
-        // Verificación de diagonales (derecha a izquierda)
+        //Verificación de diagonales (derecha a izquierda)
         for (int i = 0; i < n - 3; i++) {
             if (hasConsecutiveSequence(getDiagonal(matrix, i, n - 1, false))) {
                 mutantSequences++;
@@ -94,7 +93,7 @@ public class DNAServiceImpl extends BaseServiceImpl<DNA, Long> implements DNASer
         return mutantSequences;
     }
 
-    // Métodos auxiliares
+    //Métodos auxiliares
 
     private char[][] convertToMatrix(String[] dna) {
         int n = dna.length;
@@ -111,13 +110,13 @@ public class DNAServiceImpl extends BaseServiceImpl<DNA, Long> implements DNASer
             if (sequence[i] == sequence[i - 1]) {
                 count++;
                 if (count == 4) {
-                    return true;  // Retorna true si se detecta una secuencia de 4 iguales
+                    return true;  //Retorna true si se detecta una secuencia de 4 iguales
                 }
             } else {
                 count = 1;
             }
         }
-        return false;  // Retorna false si no hay secuencia de 4
+        return false;  //Retorna false si no hay secuencia de 4
     }
 
     private char[] getColumn(char[][] matrix, int colIndex) {

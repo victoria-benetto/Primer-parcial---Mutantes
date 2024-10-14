@@ -34,7 +34,7 @@ public abstract class BaseServiceImpl  <E extends Base, ID extends Serializable>
     public E findById(ID id) throws Exception {
         try{
             Optional<E> entityOptional = baseRepository.findById(id);
-            return entityOptional.get(); // obtiene una entidad si la encuentra o arroja una excepcion
+            return entityOptional.get(); //obtiene una entidad si la encuentra o arroja una excepcion
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
