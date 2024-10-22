@@ -11,6 +11,13 @@ public abstract class BaseControllerImpl <E extends Base, S extends BaseServiceI
     @Autowired
     protected S servicio;
 
+    public BaseControllerImpl(S service) {
+        this.servicio = service;
+    }
+
+    public BaseControllerImpl() {
+    }
+
     //brinda la respuesta en formato JSON para la app web
     @GetMapping("") //esta notacion define el tipo de request, GET en este caso
     public ResponseEntity<?> getAll(){

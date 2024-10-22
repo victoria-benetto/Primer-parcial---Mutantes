@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.PrimerParcial.service.BaseServiceImplTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-10-22T22:57:24" hostname="DESKTOP-PST0M2C" time="0.106">
+  <properties/>
+  <testcase name="testFindByIdSuccess()" classname="com.example.PrimerParcial.service.BaseServiceImplTest" time="0.079"/>
+  <testcase name="testSaveSuccess()" classname="com.example.PrimerParcial.service.BaseServiceImplTest" time="0.003"/>
+  <testcase name="testDeleteNotFound()" classname="com.example.PrimerParcial.service.BaseServiceImplTest" time="0.005"/>
+  <testcase name="testUpdateSuccess()" classname="com.example.PrimerParcial.service.BaseServiceImplTest" time="0.003"/>
+  <testcase name="testDeleteSuccess()" classname="com.example.PrimerParcial.service.BaseServiceImplTest" time="0.002"/>
+  <testcase name="testFindByIdNotFound()" classname="com.example.PrimerParcial.service.BaseServiceImplTest" time="0.004"/>
+  <testcase name="testUpdateNotFound()" classname="com.example.PrimerParcial.service.BaseServiceImplTest" time="0.002"/>
+  <testcase name="testFindAllSuccess()" classname="com.example.PrimerParcial.service.BaseServiceImplTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

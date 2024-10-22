@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.PrimerParcial.service.DNAServiceImplTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-10-22T22:57:24" hostname="DESKTOP-PST0M2C" time="0.118">
+  <properties/>
+  <testcase name="testIsMutantDatabaseError()" classname="com.example.PrimerParcial.service.DNAServiceImplTest" time="0.1"/>
+  <testcase name="testCheckDiagonalsNoMutant()" classname="com.example.PrimerParcial.service.DNAServiceImplTest" time="0.002"/>
+  <testcase name="testIsMutant()" classname="com.example.PrimerParcial.service.DNAServiceImplTest" time="0.006"/>
+  <testcase name="testCheckDiagonalsMutantFound()" classname="com.example.PrimerParcial.service.DNAServiceImplTest" time="0.003"/>
+  <testcase name="testIsMutantWithTwoSequences()" classname="com.example.PrimerParcial.service.DNAServiceImplTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

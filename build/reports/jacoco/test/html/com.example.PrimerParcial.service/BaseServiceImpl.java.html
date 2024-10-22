@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BaseServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PrimerParcial</a> &gt; <a href="index.source.html" class="el_package">com.example.PrimerParcial.service</a> &gt; <span class="el_source">BaseServiceImpl.java</span></div><h1>BaseServiceImpl.java</h1><pre class="source lang-java linenums">package com.example.PrimerParcial.service;
+
+import com.example.PrimerParcial.entities.Base;
+import com.example.PrimerParcial.repository.BaseRepository;
+import jakarta.transaction.Transactional;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
+
+public abstract class BaseServiceImpl  &lt;E extends Base, ID extends Serializable&gt; implements BaseService&lt;E, ID&gt;{
+    protected BaseRepository&lt;E, ID&gt; baseRepository;
+
+<span class="fc" id="L14">    public BaseServiceImpl(BaseRepository&lt;E, ID&gt; baseRepository){</span>
+<span class="fc" id="L15">        this.baseRepository = baseRepository;</span>
+<span class="fc" id="L16">    }</span>
+
+    //implemento metodos de la interfaz
+    @Override
+    @Transactional
+    public List&lt;E&gt; findAll() throws Exception {
+        try{
+<span class="fc" id="L23">            List&lt;E&gt; entities = baseRepository.findAll();</span>
+<span class="fc" id="L24">            return entities;</span>
+<span class="nc" id="L25">        }catch (Exception e){</span>
+<span class="nc" id="L26">            throw new Exception(e.getMessage());</span>
+            //esta excepcion la recibe el controlador
+        }
+    }
+
+
+    @Override
+    @Transactional
+    public E findById(ID id) throws Exception {
+        try{
+<span class="fc" id="L36">            Optional&lt;E&gt; entityOptional = baseRepository.findById(id);</span>
+<span class="fc" id="L37">            return entityOptional.get(); //obtiene una entidad si la encuentra o arroja una excepcion</span>
+<span class="fc" id="L38">        }catch (Exception e){</span>
+<span class="fc" id="L39">            throw new Exception(e.getMessage());</span>
+        }
+    }
+
+    @Override
+    @Transactional
+    public E save(E entity) throws Exception {
+        try{
+<span class="fc" id="L47">            entity = baseRepository.save(entity);</span>
+<span class="fc" id="L48">            return entity;</span>
+<span class="nc" id="L49">        }catch (Exception e){</span>
+<span class="nc" id="L50">            throw new Exception(e.getMessage());</span>
+        }
+    }
+
+    @Override
+    @Transactional
+    public E update(ID id, E entity) throws Exception {
+        try{
+<span class="fc" id="L58">            Optional&lt;E&gt; entityOptional = baseRepository.findById(id);</span>
+            //si no tenemos ese id, arroja excepcion y se hace rollback de la base de datos
+<span class="fc" id="L60">            E entityUpdate = entityOptional.get();</span>
+<span class="fc" id="L61">            entityUpdate = baseRepository.save(entity);</span>
+<span class="fc" id="L62">            return entityUpdate;</span>
+<span class="fc" id="L63">        }catch (Exception e){</span>
+<span class="fc" id="L64">            throw new Exception(e.getMessage());</span>
+        }
+    }
+
+    @Override
+    @Transactional
+    public boolean delete(ID id) throws Exception {
+        try{
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            if(baseRepository.existsById(id)){</span>
+<span class="fc" id="L73">                baseRepository.deleteById(id);</span>
+<span class="fc" id="L74">                return true;</span>
+            }else{
+<span class="fc" id="L76">                throw new Exception();</span>
+            }
+<span class="fc" id="L78">        }catch (Exception e){</span>
+<span class="fc" id="L79">            throw new Exception(e.getMessage());</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

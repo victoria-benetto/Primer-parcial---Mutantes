@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DNAController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PrimerParcial</a> &gt; <a href="index.source.html" class="el_package">com.example.PrimerParcial.controller</a> &gt; <span class="el_source">DNAController.java</span></div><h1>DNAController.java</h1><pre class="source lang-java linenums">package com.example.PrimerParcial.controller;
+
+
+import com.example.PrimerParcial.dto.DNARequest;
+import com.example.PrimerParcial.entities.DNA;
+import com.example.PrimerParcial.service.DNAService;
+import com.example.PrimerParcial.service.DNAServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@CrossOrigin(origins = &quot;*&quot;) //permitir el acceso a la api desde distintos clientes
+@RequestMapping(path = &quot;api/v1/dna&quot;) //la url que necesitamos para acceder a los recursos
+<span class="fc" id="L16">public class DNAController /*extends BaseControllerImpl&lt;DNA, DNAServiceImpl&gt;*/{</span>
+    @Autowired
+    DNAService dnaService;
+
+    @PostMapping(&quot;/mutant/&quot;)
+    public ResponseEntity&lt;?&gt; detect(@RequestBody DNARequest dnaRequest){
+        try{
+            //Convertir List&lt;String&gt; a un solo String concatenado
+<span class="fc" id="L24">            String dnaString = String.join(&quot;,&quot;, dnaRequest.getDna());</span>
+
+            //Crear una entidad DNA y establecer el valor del String
+<span class="fc" id="L27">            DNA dnaEntity = new DNA();</span>
+<span class="fc" id="L28">            dnaEntity.setDna(dnaString);</span>
+
+<span class="fc" id="L30">            boolean isMutant = dnaService.isMutant(dnaEntity);</span>
+
+<span class="fc bfc" id="L32" title="All 2 branches covered.">            if (isMutant) {</span>
+<span class="fc" id="L33">                return ResponseEntity.status(HttpStatus.OK).body(&quot;{\&quot;mutant\&quot;:\&quot;Mutante encontrado.\&quot;}&quot;);</span>
+            } else {
+<span class="fc" id="L35">                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(&quot;{\&quot;mutant\&quot;:\&quot;Mutante no encontrado.\&quot;}&quot;);</span>
+            }
+<span class="fc" id="L37">        } catch (Exception e) {</span>
+<span class="fc" id="L38">            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(&quot;{\&quot;error\&quot;:\&quot;&quot; + e.getMessage() + &quot;\&quot;}&quot;);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

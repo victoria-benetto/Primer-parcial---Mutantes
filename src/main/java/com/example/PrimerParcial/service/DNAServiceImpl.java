@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class DNAServiceImpl extends BaseServiceImpl<DNA, Long> implements DNAService {
+
     @Autowired
     private DNARepository dnaRepository;
 
@@ -67,7 +68,7 @@ public class DNAServiceImpl extends BaseServiceImpl<DNA, Long> implements DNASer
     }
 
     //Revisión de diagonales (ambos sentidos)
-    private int checkDiagonals(char[][] matrix) {
+    protected int checkDiagonals(char[][] matrix) {
         int n = matrix.length;
         int mutantSequences = 0;
 

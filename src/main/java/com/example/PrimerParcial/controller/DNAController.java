@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "*") //permitir el acceso a la api desde distintos clientes
 @RequestMapping(path = "api/v1/dna") //la url que necesitamos para acceder a los recursos
-public class DNAController extends BaseControllerImpl<DNA, DNAServiceImpl>{
+public class DNAController /*extends BaseControllerImpl<DNA, DNAServiceImpl>*/{
     @Autowired
     DNAService dnaService;
 

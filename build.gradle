@@ -8,6 +8,18 @@ plugins {
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
+jacoco {
+	toolVersion = "0.8.8"
+}
+
+tasks.jacocoTestReport {
+	reports {
+		xml.required = true
+		csv.required = false
+		html.required = true
+	}
+}
+
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
@@ -25,7 +37,7 @@ repositories {
 }
 
 dependencies {
-	//JPA
+	// JPA
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	// Spring web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -34,24 +46,21 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	// H2
 	runtimeOnly 'com.h2database:h2'
-
-	// Openapi swagger
+	// OpenAPI Swagger
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'
 	// Envers
 	implementation 'org.hibernate.orm:hibernate-envers:6.4.4.Final'
 	// Spring Boot Starter Validation
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.2.5'
-	// mapstruct dtos y mapstruct integrado con lombok
+	// MapStruct dtos y MapStruct integrado con Lombok
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
-	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0" // json
+	annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0" // JSON
 	implementation 'org.json:json:20210307'
-
+	// Dependencias de prueba
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mockito:mockito-core:4.8.0'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.mockito:mockito-core:4.0.0'
 }
 
 tasks.named('test') {
@@ -66,11 +75,3 @@ bootJar {
 	enabled = true
 }
 
-
-test {
-	useJUnitPlatform()
-}
-
-jacoco {
-	toolVersion
-}

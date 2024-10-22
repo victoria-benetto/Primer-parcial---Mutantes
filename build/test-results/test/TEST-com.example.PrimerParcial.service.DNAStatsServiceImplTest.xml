@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.PrimerParcial.service.DNAStatsServiceImplTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-10-22T22:57:24" hostname="DESKTOP-PST0M2C" time="0.013">
+  <properties/>
+  <testcase name="testCalcularStats_ConDatos()" classname="com.example.PrimerParcial.service.DNAStatsServiceImplTest" time="0.003"/>
+  <testcase name="testCalcularStats_SoloHumanos()" classname="com.example.PrimerParcial.service.DNAStatsServiceImplTest" time="0.004"/>
+  <testcase name="testCalcularStats_SinDatos()" classname="com.example.PrimerParcial.service.DNAStatsServiceImplTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
