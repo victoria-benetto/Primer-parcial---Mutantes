@@ -4,7 +4,7 @@ Parcial backend de la materia "Desarrollo de Software"
 3er año ingeniería en sistemas, UTN
 
 ## Alumna
-- Beneto, Maria Victoria
+- Benetto, Maria Victoria
 - Legajo: 47727
 - Comisión: 3K10
 - Año: 2024
